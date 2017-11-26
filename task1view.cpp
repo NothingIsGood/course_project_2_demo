@@ -1,16 +1,11 @@
 #include "task1view.h"
 
-Task1View::Task1View(QWidget *parent) : QMainWindow(parent)
+Task1View::Task1View(QWidget *parent) : AbstractView(parent)
 {
     //Управление элементами формы -- размеры и текст
     this->setWindowTitle("Задача 1 — наибольшая общая подстрока");
+    /*
     this->resize(MainWindow::startSizes::width, MainWindow::startSizes::height);
-    inputStr1 = new QLineEdit(this);
-    inputStr1->setPlaceholderText("Введите первую строку");
-    inputStr1->setGeometry(40, 40, 180, 40);
-    inputStr2 = new QLineEdit(this);
-    inputStr2->setPlaceholderText("Введите вторую строку");
-    inputStr2->setGeometry(40, 100, 180, 40);
     startAlg = new QPushButton("Старт/Перезапуск алгоритма", this);
     startAlg->setGeometry(40, 160, 180, 40);
     prevStep = new QPushButton("<<", this);
@@ -21,19 +16,15 @@ Task1View::Task1View(QWidget *parent) : QMainWindow(parent)
     table->setGeometry(360, 40, 400, 400);
     logs = new QTextBrowser(this);
     logs->setGeometry(40, 200, 300, 400);
-    dataLoaded = false;
-    //Загрузка примеров -- вшиты в программу
-    listExamples.append(QPair<QString, QString> ("Hello", "Hello"));
-    listExamples.append(QPair<QString, QString> ("for", "foreach"));
-    listExamples.append(QPair<QString, QString> ("program", "bin"));
-    for (size_t i = 0; i < (size_t)MainWindow::buttonCount::value; ++i)
-    {
-        listButtonExamples.append(new QPushButton("Пример " + QString::number(i + 1), this));
-        listButtonExamples[i]->setGeometry(380 + i * 120, 440, 120, 50);
-    }
-    connect(listButtonExamples[0], SIGNAL(clicked(bool)), SLOT(loadExample1()));
-    connect(listButtonExamples[1], SIGNAL(clicked(bool)), SLOT(loadExample2()));
-    connect(listButtonExamples[2], SIGNAL(clicked(bool)), SLOT(loadExample3()));
+    dataLoaded = false; */
+
+    inputStr1 = new QLineEdit(this);
+    inputStr1->setPlaceholderText("Введите первую строку");
+    inputStr1->setGeometry(40, 40, 180, 40);
+    inputStr2 = new QLineEdit(this);
+    inputStr2->setPlaceholderText("Введите вторую строку");
+    inputStr2->setGeometry(40, 100, 180, 40);
+
     //Сигналы и слоты
     connect(startAlg, SIGNAL(clicked(bool)), SLOT(startAlg_clicked()));
     connect(nextStep, SIGNAL(clicked(bool)), SLOT(nextStep_clicked()));
@@ -79,21 +70,6 @@ void Task1View::loadTable()
     table->setModel(model);
 }
 
-void Task1View::loadExample(QPair <QString, QString> example)
-{
-    //Загружает элементы структуры-пары в поля ввода
-    //В структуре находятся 2 строки -- примеры для демонстрации
-    inputStr1->setText(example.first);
-    inputStr2->setText(example.second);
-}
-//Судя по всему, архитектура фреймфорка не позволяет найти другое решение
-//По крайней мере, без работы с мета-объектами Qt
-//Передать параметр в connect() Qt не позволяет --
-//Сигнатура сигнала и слота должна быть схожей (один возвращает -- другой принимает)
-void Task1View::loadExample1() {loadExample(listExamples[0]);}
-void Task1View::loadExample2() {loadExample(listExamples[1]);}
-void Task1View::loadExample3() {loadExample(listExamples[2]);}
-
 void Task1View::startAlg_clicked()
 {
     //Вызывается при начале демонстрации алгоритма
@@ -116,7 +92,7 @@ void Task1View::startAlg_clicked()
     }
 }
 
-
+/*
 
 QString Task1View::updateLogs()
 {
@@ -156,3 +132,4 @@ void Task1View::prevStep_clicked()
     }
     //qDebug() << baseAlg->getCounter();
 }
+*/

@@ -17,7 +17,8 @@ SOURCES += main.cpp\
     task1lcs.cpp \
     task1view.cpp \
     task2matrix.cpp \
-    task2view.cpp
+    task2view.cpp \
+    abstractview.cpp
 
 HEADERS  += mainwindow.h \
     abstracttask.h \
@@ -25,4 +26,5 @@ HEADERS  += mainwindow.h \
     exceptions.h \
     task1view.h \
     task2matrix.h \
-    task2view.h
+    task2view.h \
+    abstractview.h
