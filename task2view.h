@@ -27,6 +27,7 @@ private:
 
 private slots:
     void startAlg_clicked() override;
+    void loadExample_clicked() override; //Выбор решения
 };
 
 #endif // TASK2VIEW_H

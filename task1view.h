@@ -7,6 +7,12 @@
 #include <QStandardItemModel>
 #include <QMessageBox>
 
+/*
+ * Интерфейс для задания 1
+ * Переопределены только поля ввода и необходимые методы
+ *
+ * */
+
 class Task1View : public AbstractView
 {
     Q_OBJECT
@@ -21,7 +27,7 @@ private:
 
 private slots:
     void startAlg_clicked() override; //Старт алгоритма
-
+    void loadExample_clicked() override; //Выбор решения
 };
 
 #endif // TASK1VIEW_H

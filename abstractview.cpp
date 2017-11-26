@@ -2,6 +2,7 @@
 
 AbstractView::AbstractView(QWidget *parent) : QMainWindow(parent)
 {
+    //Все общие поля определены тут
     this->resize(winStartSizes::width, winStartSizes::height);
     startAlg = new QPushButton("Старт/Перезапуск алгоритма", this);
     startAlg->setGeometry(40, 160, 180, 40);
@@ -14,10 +15,16 @@ AbstractView::AbstractView(QWidget *parent) : QMainWindow(parent)
     logs = new QTextBrowser(this);
     logs->setGeometry(40, 200, 300, 400);
     dataLoaded = false;
+
+    confirmExample = new QPushButton("Выбрать пример", this);
+    confirmExample->setGeometry(560, 500, 100, 30);
+    box = new QComboBox(this);
+    box->setGeometry(400, 500, 150, 30);
 }
 
 QString AbstractView::updateLogs()
 {
+    //Обновляет логи в соответствии с шагами алгоритма
     QString res = "";
     for (auto &elem : logVector)
         res += elem;
@@ -49,5 +56,21 @@ void AbstractView::prevStep_clicked()
             logVector.pop_back();
         logs->setText(updateLogs());
         logs->moveCursor(QTextCursor::End);
+    }
+}
+
+void AbstractView::setFileList()
+{
+    //Обновляет список именами файлов в заданной директории и с заданной маской
+    //Примечание -- поиск по поддиректориям также присутствует
+    box->clear();
+    qDebug() << getExampleDirPath();
+    QDirIterator it(getExampleDirPath(), QStringList() << fileExt, QDir::Files, QDirIterator::Subdirectories);
+    while(it.hasNext())
+    {
+        it.next();
+        auto tmpName = it.fileName();
+        box->addItem(tmpName);
+
     }
 }

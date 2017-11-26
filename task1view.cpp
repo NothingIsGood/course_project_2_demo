@@ -4,20 +4,10 @@ Task1View::Task1View(QWidget *parent) : AbstractView(parent)
 {
     //Управление элементами формы -- размеры и текст
     this->setWindowTitle("Задача 1 — наибольшая общая подстрока");
-    /*
-    this->resize(MainWindow::startSizes::width, MainWindow::startSizes::height);
-    startAlg = new QPushButton("Старт/Перезапуск алгоритма", this);
-    startAlg->setGeometry(40, 160, 180, 40);
-    prevStep = new QPushButton("<<", this);
-    prevStep->setGeometry(260, 40, 40, 40);
-    nextStep = new QPushButton(">>", this);
-    nextStep->setGeometry(300, 40, 40, 40);
-    table = new QTableView(this);
-    table->setGeometry(360, 40, 400, 400);
-    logs = new QTextBrowser(this);
-    logs->setGeometry(40, 200, 300, 400);
-    dataLoaded = false; */
-
+    //Маска и поддиректория
+    fileExt = "*.task1";
+    fileFolder = "/task1ex/";
+    //Вспомогательные поля (поля ввода)
     inputStr1 = new QLineEdit(this);
     inputStr1->setPlaceholderText("Введите первую строку");
     inputStr1->setGeometry(40, 40, 180, 40);
@@ -29,6 +19,9 @@ Task1View::Task1View(QWidget *parent) : AbstractView(parent)
     connect(startAlg, SIGNAL(clicked(bool)), SLOT(startAlg_clicked()));
     connect(nextStep, SIGNAL(clicked(bool)), SLOT(nextStep_clicked()));
     connect(prevStep, SIGNAL(clicked(bool)), SLOT(prevStep_clicked()));
+    connect(confirmExample, SIGNAL(clicked(bool)), SLOT(loadExample_clicked()));
+
+    setFileList();
 }
 
 void Task1View::loadTable()
@@ -92,44 +85,17 @@ void Task1View::startAlg_clicked()
     }
 }
 
-/*
-
-QString Task1View::updateLogs()
+void Task1View::loadExample_clicked()
 {
-    //Перезапись логов для вывода в QTextBrowser
-    QString res = "";
-    for (auto &elem : logVector)
-        res += elem;
-    return res;
+    //Загрузка примера
+    QString pathToFile = getExampleDirPath() + box->currentText();
+    QFile file (pathToFile);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        return;
+
+    QTextStream in(&file);
+    inputStr1->setText(in.readLine());
+    inputStr2->setText(in.readLine());
+    file.close();
 }
 
-void Task1View::nextStep_clicked()
-{
-    //Переход на следующий шаг
-    if (dataLoaded && baseAlg->hasNext())
-    {
-        baseAlg->next();
-        loadTable();
-        logVector.push_back(QString::fromUtf8(baseAlg->peek().logs_.c_str()));
-        logs->setText(updateLogs());
-        logs->moveCursor(QTextCursor::End);
-
-    }
-    //qDebug() << baseAlg->getCounter();
-}
-
-void Task1View::prevStep_clicked()
-{
-    //Переход на предыдущий шаг
-    if (dataLoaded && baseAlg->hasPrev())
-    {
-        baseAlg->prev();
-        loadTable();
-        if (!logVector.empty())
-            logVector.pop_back();
-        logs->setText(updateLogs());
-        logs->moveCursor(QTextCursor::End);
-    }
-    //qDebug() << baseAlg->getCounter();
-}
-*/

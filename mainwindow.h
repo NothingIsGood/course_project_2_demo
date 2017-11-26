@@ -13,7 +13,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 public:
     enum buttonCount {value = 3,}; //Число кнопок с примерами
-    enum startSizes {width = 800, height = 600}; //Размеры
+    enum startSizes {width = 800, height = 600}; //Размеры главного окна
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
 private slots:
