@@ -6,6 +6,7 @@
 
 #include "abstracttask.h"
 #include "exceptions.h"
+
 /*
  * Задание 2 --
  * Задача о перемножении матриц
@@ -19,7 +20,7 @@
  *
  * */
 
-#include <QDebug>
+
 class Task2Matrix: public AbstractTask
 {
 public:

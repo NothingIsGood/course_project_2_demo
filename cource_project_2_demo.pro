@@ -18,7 +18,9 @@ SOURCES += main.cpp\
     task1view.cpp \
     task2matrix.cpp \
     task2view.cpp \
-    abstractview.cpp
+    abstractview.cpp \
+    task3knapsack.cpp \
+    task3view.cpp
 
 HEADERS  += mainwindow.h \
     abstracttask.h \
@@ -27,4 +29,6 @@ HEADERS  += mainwindow.h \
     task1view.h \
     task2matrix.h \
     task2view.h \
-    abstractview.h
+    abstractview.h \
+    task3knapsack.h \
+    task3view.h

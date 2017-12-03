@@ -6,7 +6,7 @@
 #include <QLabel>
 #include "task1view.h"
 #include "task2view.h"
-
+#include "task3view.h"
 
 class MainWindow : public QMainWindow
 {
@@ -19,10 +19,12 @@ public:
 private slots:
     void action_Task1ButtonClicked();
     void action_Task2ButtonClicked();
+    void action_Task3ButtonClicked();
 private:
     QLabel* label;
     QPushButton* buttonTask1;
     QPushButton* buttonTask2;
+    QPushButton* buttonTask3;
 };
 
 #endif // MAINWINDOW_H
